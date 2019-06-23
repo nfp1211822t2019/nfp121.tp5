@@ -67,10 +67,20 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
         add(texte, "Center");
 
         boutonRechercher.addActionListener(this);
-        // à compléter;
+        ordreCroissant.addItemListener(this);
+        ordreDecroissant.addItemListener(this);
+        
+        boutonAnnuler.addActionListener(this);
+        
+        boutonRetirer.addActionListener(this);
+        boutonOccurrences.addActionListener(this);
+        
 
     }
 
+    Originator originator = new Originator();
+        CareTaker careTaker = new CareTaker();
+    
     public void actionPerformed(ActionEvent ae) {
         try {
             boolean res = false;
@@ -93,13 +103,20 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
                     afficheur.setText(" -->  ??? ");
             }
             texte.setText(liste.toString());
-
+            
+            if(ae.getSource() == boutonAnnuler){
+              
+            }
+            
         } catch (Exception e) {
             afficheur.setText(e.toString());
         }
     }
 
     public void itemStateChanged(ItemEvent ie) {
+       
+        
+        
         if (ie.getSource() == ordreCroissant)
         ;// à compléter
         else if (ie.getSource() == ordreDecroissant)
@@ -108,11 +125,16 @@ public class JPanelListe2 extends JPanel implements ActionListener, ItemListener
         texte.setText(liste.toString());
     }
 
-    private boolean retirerDeLaListeTousLesElementsCommencantPar(String prefixe) {
+      private boolean retirerDeLaListeTousLesElementsCommencantPar(String prefixe) {
         boolean resultat = false;
-        // à compléter
-        // à compléter
-        // à compléter
+  
+        for(int i=0;i<liste.size();i++){
+        String s= liste.get(i);
+        if(s.contains(prefixe)){
+            liste.remove(i);
+             resultat=true;
+           occurrences.put(s,0);}
+        }
         return resultat;
     }
 

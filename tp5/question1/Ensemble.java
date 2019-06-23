@@ -4,44 +4,59 @@ import java.util.*;
 
 public class Ensemble<T> extends AbstractSet<T> {
 
-	protected java.util.Vector<T> table = new java.util.Vector<T>();
+    protected java.util.Vector<T> table = new java.util.Vector<T>();
 
-	public int size() {
-		return table.size();
-	}
+    public int size() {
+        return table.size();
+    }
 
-	public Iterator<T> iterator() {
-		return table.iterator();
-	}
+    public Iterator<T> iterator() {
+        return table.iterator();
+    }
 
-	public boolean add(T t) {
-		// à compléter pour la question1-1
+    public boolean add(T t) {
+    if(table.contains(t)){  
+        return false;
+    }
+         else{
+          table.add(t);
+      return true;}
+    }
 
-		return false;
-	}
+    public Ensemble<T> union(Ensemble<? extends T> e) {
+        // à compléter pour la question1-2
+          Ensemble<T> u= new Ensemble<T>();
+          u.addAll(this);
+          u.addAll(e);
+          return u;
+    }
 
-	public Ensemble<T> union(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
+    public Ensemble<T> inter(Ensemble<? extends T> e) {
+        // à compléter pour la question1-2
+           Ensemble<T> i= new Ensemble<T>();
+           i.addAll(e);
+           i.retainAll(this);
+           i.toString();
+           return i;
+    }
 
-		return null;
-	}
+    public Ensemble<T> diff(Ensemble<? extends T> e) {
+          Ensemble<T> dif= new Ensemble<T>();
+          dif.addAll(this);
+          dif.removeAll(e);
+          return dif;        
+    }
 
-	public Ensemble<T> inter(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
+    Ensemble<T> diffSym(Ensemble<? extends T> e) {
+          Ensemble<T> d= new Ensemble<T>();
+           Ensemble<T> i= new Ensemble<T>();
+           
 
-		return null;
-	}
+           i=this.inter(e);
+           d=this.union(e);
+           d.removeAll(i);
 
-	public Ensemble<T> diff(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
-
-		return null;
-	}
-
-	Ensemble<T> diffSym(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
-
-		return null;
-	}
-	
+           return d;
+    }
+    
 }
